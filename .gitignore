@@ -1,2 +1,5 @@
 .idea/
 my-env/
+htmlcov/
+.coverage
+__pycache__/
