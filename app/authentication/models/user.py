@@ -11,6 +11,7 @@ class User(DB.Model, Queryset):
     id = DB.Column(DB.Integer, primary_key=True)
     email = DB.Column(DB.String, unique=True)
     password = DB.Column(DB.String)
+    roles = DB.relationship('Role', backref='user', lazy=True)
 
     def __init__(self, email, password):
         self.email = email
