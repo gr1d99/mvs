@@ -9,6 +9,8 @@ class Config(object):
     TESTING = False
     SQLALCHEMY_DATABASE_URI = None
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = 'some-super-secret-key'
+    HOST = os.environ.get('HOST', 'localhost')
 
 
 class Production(Config):

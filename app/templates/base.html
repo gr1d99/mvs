@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        {% block title %}
+            {% if page_title %} {{ page_title|capitalize }} - {% endif %}
+            MVS
+        {% endblock title %}
+    </title>
+<link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/materia/bootstrap.min.css" rel="stylesheet" integrity="sha384-5mtbl3D/NWE3adtPBX+YsVIhjrCzkc9MWi8qMUcsRKvXa0vuQUnGCVZEGm2Y0YYm" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/authentication/login.css') }}">
+</head>
+<body>
+
+{% include 'includes/navbar.html' %}
+
+<div class="container">
+    {% include 'includes/alert_box.html' %}
+    {% block content %} {% endblock content %}
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<script src="{{ url_for('static', filename='js/authentication/authentication.js') }}"></script>
+<script src="{{ url_for('static', filename='js/authentication/login.js') }}"></script>
+<script src="{{ url_for('static', filename='js/authentication/logout.js') }}"></script>
+</body>
+</html>

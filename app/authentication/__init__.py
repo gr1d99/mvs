@@ -1,8 +1,12 @@
 """User authentication application"""
 
 from flask import Blueprint
+from .views import LoginView
 
-authentication_app = Blueprint(
+AUTHENTICATION_APP = Blueprint(
     'authentication_app',
-    __name__
+    __name__,
+    template_folder='templates'
 )
+
+AUTHENTICATION_APP.add_url_rule('/login', view_func=LoginView.as_view('login'))
