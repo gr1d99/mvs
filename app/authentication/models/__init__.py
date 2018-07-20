@@ -1,5 +1,5 @@
-from app.authentication.models.user import User
-from app.authentication.models.role import Role
+from .role import Role
+from .user import User
 
 
 __all__ = [

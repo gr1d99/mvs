@@ -1,6 +1,6 @@
 """User database model"""
 
-from app import DB
+from app import BCRYPT, DB
 from app.authentication.utils import hashers
 from app.db.models.query import Queryset
 
@@ -16,3 +16,8 @@ class User(DB.Model, Queryset):
     def __init__(self, email, password):
         self.email = email
         self.password = hashers.make_password(password)
+
+    def check_password(self, raw_password):
+        return BCRYPT.check_password_hash(
+            self.password, raw_password
+        )
