@@ -2,6 +2,10 @@
 
 import os
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class Config(object):
     """Main configuration class"""
@@ -9,8 +13,12 @@ class Config(object):
     TESTING = False
     SQLALCHEMY_DATABASE_URI = None
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SECRET_KEY = 'some-super-secret-key'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
     HOST = os.environ.get('HOST', 'localhost')
+    JWT_SECRET_KEY = 'super-jwt-secret-key'
+    JWT_BLACKLIST_ENABLED = True
+    JWT_BLACKLIST_TOKEN_CHECKS = ['access', ]
+    JWT_ERROR_MESSAGE_KEY = 'message'
 
 
 class Production(Config):
@@ -31,7 +39,7 @@ class Testing(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL', None)
 
 
-SET_ENVIRONMENT = os.environ.get('FLASK_ENV')
+SET_ENVIRONMENT = os.getenv('FLASK_ENV')
 
 
 CONFIGURATION = {
