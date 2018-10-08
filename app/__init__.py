@@ -1,6 +1,6 @@
 """Application entry-point"""
 
-from flask import Flask, render_template
+from flask import jsonify, Flask, render_template
 from flask.views import View
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager
@@ -8,13 +8,20 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from config import ENVIRONMENT_OBJECT
 
-APP = Flask(__name__)
-APP.config.from_object(ENVIRONMENT_OBJECT)
 
+def create_app():
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_object(ENVIRONMENT_OBJECT)
+    return app
+
+
+APP = create_app()
 BCRYPT = Bcrypt(APP)
 DB = SQLAlchemy(APP)
 JWT = JWTManager(APP)
 migrate = Migrate(APP, DB)
+
+BLACKLIST = set()
 
 
 from app.authentication import AUTHENTICATION_APP
